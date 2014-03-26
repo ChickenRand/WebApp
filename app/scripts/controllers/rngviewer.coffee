@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('webAppApp')
-  .controller 'MainCtrl', ($scope) ->
+  .controller 'RngviewerCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'

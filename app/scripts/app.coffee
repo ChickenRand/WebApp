@@ -1,7 +1,8 @@
 'use strict'
 
-angular.module('chickenRandApp', [
+angular.module('webAppApp', [
   'ngCookies',
+  'ngResource',
   'ngSanitize',
   'ngRoute'
 ])
@@ -10,5 +11,8 @@ angular.module('chickenRandApp', [
       .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
+      .when '/rngviewer',
+        templateUrl: 'views/rngviewer.html'
+        controller: 'RngviewerCtrl'
       .otherwise
         redirectTo: '/'

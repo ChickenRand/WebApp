@@ -1,17 +1,17 @@
 'use strict'
 
-describe 'Controller: MainCtrl', () ->
+describe 'Controller: RngviewerCtrl', () ->
 
   # load the controller's module
   beforeEach module 'webAppApp'
 
-  MainCtrl = {}
+  RngviewerCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    MainCtrl = $controller 'MainCtrl', {
+    RngviewerCtrl = $controller 'RngviewerCtrl', {
       $scope: scope
     }
 
