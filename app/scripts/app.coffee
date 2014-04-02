@@ -14,5 +14,8 @@ angular.module('webAppApp', [
       .when '/rngviewer',
         templateUrl: 'views/rngviewer.html'
         controller: 'RngviewerCtrl'
+      .when '/experiments',
+        templateUrl: 'views/experiments.html'
+        controller: 'ExperimentsCtrl'
       .otherwise
         redirectTo: '/'

@@ -1,7 +1,9 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
-    <li ng-repeat="(page, link) in pages"><a ng-href="{{link}}">{{page}}</a></li>
-    <li><a data-toggle="modal" data-target="#loginModal">Connection</a></li>
+    <li ng-repeat="(name, page) in pages"><a ng-href="{{page.url}}" ng-hide="page.onlyLogged && !$root.user.infos">{{name}}</a></li>
+    <li><a ng-hide="$root.user.infos" data-toggle="modal" data-target="#loginModal">Connection</a></li>
+    <li><a ng-hide="$root.user.infos" data-toggle="modal" data-target="#registerModal">Inscription</a></li>
+    <li><a ng-show="$root.user.infos" href="/#/user">{{$root.user.infos.email}}</a></li>
   </ul>
   <h3 class="text-muted">ChickenRand</h3>
 </div>
@@ -13,22 +15,100 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Connection</h4>
       </div>
-      <div class="modal-body">
-        <form role="form" ng-submit="login()">
+      <form role="form" ng-submit="login(email, password)">
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="login-email">Email :</label>
+              <input type="email" class="form-control" ng-model="email" id="login-email" placeholder="toi@epitech.eu" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Mot de passe :</label>
+              <input type="password" class="form-control" ng-model="password" id="login-password" placeholder="Password" required>
+            </div>
+            <p class="text-danger">{{error}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary">Connection</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="registerModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Inscription</h4>
+      </div>
+      <form role="form" ng-submit="register(user)">
+        <div class="modal-body">
           <div class="form-group">
-            <label for="login-email">Email :</label>
-            <input type="email" class="form-control" ng-model="loginEmail" id="login-email" placeholder="toi@epitech.eu" required>
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" ng-model="user.email" id="email" placeholder="toi@epitech.eu" required>
           </div>
           <div class="form-group">
-            <label for="login-password">Mot de passe :</label>
-            <input type="password" class="form-control" ng-model="loginPassword" id="login-password" placeholder="Password" required>
+            <label for="password">Mot de passe :</label>
+            <input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Password" required>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary" ng-click="login()">Connection</button>
-      </div>
+          <div class="form-group">
+            <label for="age">Âge :</label>
+            <input type="number" class="form-control" ng-model="user.age" id="age" placeholder="25" required>
+          </div>
+          <div class="form-group">
+            <label for="laterality">Latéralité :</label>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="user.laterality" name="laterality" value="left" required>
+                Gaucher
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="user.laterality" name="laterality" value="right" required>
+                Droitier
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="laterality">Croyez-vous en l'influence de l'esprit sur la matière :</label>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="user.beliver" name="beliver" value="true" required>
+                Non
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="user.beliver" name="beliver" value="false" required>
+                Oui
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="laterality">Sexe :</label>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="user.sex" name="sex" value="man" required>
+                Homme
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" ng-model="user.sex" name="sex" value="female" required>
+                Femme
+              </label>
+            </div>
+          </div>
+          <p class="text-danger">{{error}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-primary">Inscription</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
