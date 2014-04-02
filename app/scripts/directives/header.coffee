@@ -5,6 +5,7 @@ angular.module('webAppApp')
     templateUrl: 'views/header.html'
     restrict: 'E'
     link: (scope, element, attrs) ->
+        $('.dropdown-toggle').dropdown()
         scope.pages = {
             "Accueil": url: "/#/"
             "Experimentations": url: "/#/experiments", onlyLogged: true
@@ -15,6 +16,7 @@ angular.module('webAppApp')
             $("#registerModal").modal "show"
         scope.$root.$on "showLogin", scope.showLoginModal
         scope.$root.$on "showRegister", scope.showRegisterModal
+        scope.logout = User.logout
         scope.login = (email, password) ->
             User.login(email, password).error (data, status) ->
                 if status == 401

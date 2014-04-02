@@ -2,8 +2,18 @@
 
 angular.module('webAppApp')
   .service 'User', ($http, Globals, $rootScope) ->
-    $rootScope.user = @
-    login: (email, password) ->
+    @infos =
+        email: "geek.uillaume@gmail.com"
+        laterality: "left"
+
+    @updateUser = () ->
+        $http.get("#{Globals.APIURL}/api/user")
+            .success (data, status) ->
+                @infos = data
+
+    @updateUser()
+
+    @login = (email, password) ->
         request = $http.post "#{Globals.APIURL}/api/user/login", {email, password}
         request.success (data, status) ->
             @infos = data
@@ -12,7 +22,7 @@ angular.module('webAppApp')
             $rootScope.$broadcast Globals.events.loginFail
         return request
 
-    register: (infos) ->
+    @register = (infos) ->
         request = $http.post "#{Globals.APIURL}/api/user", infos
         request.success (data, status) ->
             @infos = data
@@ -21,7 +31,7 @@ angular.module('webAppApp')
             $rootScope.$broadcast Globals.events.loginFail
         return request
 
-    logout: ->
+    @logout = ->
         request = $http.post "#{Globals.APIURL}/api/user/logout"
         request.success (data, status) ->
             @infos = NULL
@@ -30,8 +40,10 @@ angular.module('webAppApp')
             $rootScope.$broadcast Globals.events.logoutFail
         return request
 
-    modifyUser: (infos) ->
+    @modifyUser = (infos) ->
         request = $http.post "#{Globals.APIURL}/api/user", infos
         request.success (data, status) ->
             @infos = data
         return request
+
+    return @

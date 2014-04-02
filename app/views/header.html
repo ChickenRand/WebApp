@@ -3,11 +3,15 @@
     <li ng-repeat="(name, page) in pages"><a ng-href="{{page.url}}" ng-hide="page.onlyLogged && !$root.user.infos">{{name}}</a></li>
     <li><a ng-hide="$root.user.infos" data-toggle="modal" data-target="#loginModal">Connection</a></li>
     <li><a ng-hide="$root.user.infos" data-toggle="modal" data-target="#registerModal">Inscription</a></li>
-    <li><a ng-show="$root.user.infos" href="/#/user">{{$root.user.infos.email}}</a></li>
+    <li class="dropdown">
+      <a ng-show="$root.user.infos" data-toggle="dropdown" class="dropdown-toggle" href="#">{{$root.user.infos.email}}</a>
+      <ul class="dropdown-menu" role="menu">
+        <li role="presentation"><a href="#" ng-click="logout()" role="menuitem">Déconnexion</a></li>
+      </ul>
+    </li>
   </ul>
   <h3 class="text-muted">ChickenRand</h3>
 </div>
-
 <div class="modal fade" id="loginModal">
   <div class="modal-dialog">
     <div class="modal-content">

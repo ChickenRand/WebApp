@@ -19,3 +19,6 @@ angular.module('webAppApp', [
         controller: 'ExperimentsCtrl'
       .otherwise
         redirectTo: '/'
+
+angular.module('webAppApp').run ($rootScope, User) ->
+  $rootScope.user = User
