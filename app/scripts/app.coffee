@@ -17,6 +17,9 @@ angular.module('webAppApp', [
       .when '/experiments',
         templateUrl: 'views/experiments.html'
         controller: 'ExperimentsCtrl'
+      .when '/experiment/doodlejump',
+        templateUrl: 'views/experiment/doodlejump.html'
+        controller: 'ExperimentDoodlejumpCtrl'
       .otherwise
         redirectTo: '/'
 

@@ -5,7 +5,8 @@
   <p class="lead">
     Slogan... (qu'on doit encore trouver !)
   </p>
-  <p><a class="btn btn-lg btn-success" ng-click="$emit('showRegister')">Je veux participer !</a></p>
+  <p><a class="btn btn-lg btn-success" ng-click="$emit('showRegister')" ng-hide="$root.user.infos">Je veux participer !</a></p>
+  <p><a class="btn btn-lg btn-success" href="#/experiments" ng-show="$root.user.infos">Faire une experience !</a></p>
 </div>
 
 <div class="row marketing">
