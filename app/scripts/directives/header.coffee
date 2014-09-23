@@ -23,3 +23,7 @@ angular.module('webAppApp')
                     scope.error = "Mauvaise combinaison email / mot de passe"
                 else
                     scope.error = "Impossible de se connecter au serveur"
+            .success (data, status) ->
+                $("#loginModal").modal "hide"
+        scope.register = (user) ->
+            User.register(user)
