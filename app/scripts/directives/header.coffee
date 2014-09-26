@@ -27,3 +27,6 @@ angular.module('webAppApp')
                 $("#loginModal").modal "hide"
         scope.register = (user) ->
             User.register(user)
+
+        scope.$root.$on "$routeChangeStart", (event, currRoute, prevRoute) ->
+            window.location.hash = "/" if scope.pages.Experimentations.onlyLogged and not User.infos
