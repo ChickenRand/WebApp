@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('webAppApp')
-  .directive 'headerBar', (User) ->
+  .directive 'headerBar', (User, $location) ->
     templateUrl: 'views/header.html'
     restrict: 'E'
     link: (scope, element, attrs) ->
@@ -29,4 +29,4 @@ angular.module('webAppApp')
             User.register(user)
 
         scope.$root.$on "$routeChangeStart", (event, currRoute, prevRoute) ->
-            window.location.hash = "/" if scope.pages.Experimentations.onlyLogged and not User.infos
+            $location.path "/" if scope.pages.Experimentations.onlyLogged and not User.infos

@@ -1,5 +1,8 @@
 <header-bar></header-bar>
-
-    <doodlejump></doodlejump>
-
+	<div ng-if="!queue.length">
+    	<doodlejump></doodlejump>
+    </div>
+    <div ng-if="queue.length > 0">
+    	<span>la fille d'attente est pleine {{ queue.length }} Vous devez attendre {{ queue.estimated_time }}</span>
+    </div>
 <footer-bar></footer-bar>
