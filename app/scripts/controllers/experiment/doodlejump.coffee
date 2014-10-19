@@ -8,14 +8,15 @@
  # Controller of the webAppApp
 ###
 angular.module('webAppApp')
-  .controller 'ExperimentDoodlejumpCtrl', ($scope) ->
+  .controller 'ExperimentDoodlejumpCtrl', ['$scope', '$http', ($scope, $http) ->
   	queue =
   		length: 0
   		estimated_time: 0
-    request = $http.get "#{Globals.APIURL}/api/queue/state"
-        request.success (data, status) =>
-        	queue = data
-        request.error (data, status) =>
+  	request = $http.get "#{Globals.APIURL}/api/queue/state"
+  	request.success (data, status) =>
+  		queue = data
+  	request.error (data, status) =>
+]
 
 
 

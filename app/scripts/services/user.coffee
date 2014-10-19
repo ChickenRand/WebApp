@@ -2,16 +2,14 @@
 
 angular.module('webAppApp')
   .service 'User', ($http, Globals, $rootScope) ->
-    @infos =
-        email: "geek.uillaume@gmail.com"
-        laterality: "left"
+    @infos = null
 
     @updateUser = () =>
         $http.get("#{Globals.APIURL}/api/user")
             .success (data, status) =>
                 @infos = data
 
-    @updateUser()
+    #@updateUser()
 
     @login = (email, password) =>
         request = $http.post "#{Globals.APIURL}/api/user/login", {email, password}
